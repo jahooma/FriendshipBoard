@@ -12,8 +12,8 @@ var config = {
 var speechRec = SpeechRecognition(config);
 speechRec.start();
 
-*/
 
+*/
 var SpeechRecognition = function(config) {
 	var my = {};
 	var currMsgText = "";
