@@ -1,0 +1,65 @@
+#header-bar{
+    background-color:#000000;
+    font-family:Verdana;
+    color:white;
+    text-align:right;
+    padding:5px 5px 5px 5px;
+}
+#main-content{
+    background-color:#ff0000;
+    width:100%;
+}
+#chat_boards{
+    background-color:#abcdef;
+    width:100%;
+    overflow:hidden;
+}
+#recent-chats{
+    background-color:#fff;
+    border-radius:4px;
+    width:50%;
+    height:100%;
+    float:left;
+    padding-bottom:1000px;
+    margin-bottom:-1000px;
+}
+#long_chat-history{
+    background-color:#fff;
+    border-radius:4px;
+    width:50%;
+    height:100%;
+    float:left;
+    padding-bottom:1000px;
+    margin-bottom:-1000px;
+}
+.message{
+    border-radius:4px;
+    background-color:#fff;
+    border: 1px solid #ccc;
+    padding:5px 5px 5px 5px;
+}
+.message-text{
+    font-family:Verdana;
+    color: black;
+}
+.message-time{
+    font-family:Courier;
+    text-align:right;
+    color: #aaa;
+}
+#icon-bar{
+    background-color:#000000;
+    color:white;
+    clear:both;
+}
+#icons-list{
+    padding:5px 5px 5px 5px;
+}
+.icon{
+    padding:5px 5px 5px 5px;
+    border:solid white;
+    background-image:url("storyboard_icon.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    height: 100%;
+}
