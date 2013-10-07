@@ -3,6 +3,6 @@ Messages = new Meteor.Collection("messages");
 
 if (Meteor.isClient) {
 	Template.messages.messages = function () {
-		return Messages.find({}, {limit: 10}, {sort: {time : -1}});
+		return Messages.find({},{sort: {time: -1}, limit: 10});
 	};
   };
