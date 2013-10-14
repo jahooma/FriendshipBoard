@@ -4,9 +4,10 @@ if (Meteor.isClient) {
 
 	Meteor.startup(function () {
 
+	var currMsgText = "";
+
 	var SpeechRecognition = function(config) {
 		var my = {};
-		var currMsgText = "";
 		var currId = 0;
 		var timeoutId;
 		newRecognition();
@@ -92,4 +93,19 @@ if (Meteor.isClient) {
 		return Messages.find({},{sort: {time: -1}, limit: 10});
 	};
 
+	Template.first.message1 = function () {
+		return Messages.findOne({},{sort: {time: -1}});
+	};
+
+	Template.second.message2 = function () {
+		return Messages.findOne({},{sort: {time: -1}, skip: 1});
+	};
+
+	Template.third.message3 = function () {
+		return Messages.findOne({},{sort: {time: -1}, skip: 2});
+	};
+
+	Template.current.message = function () {
+		return currMsgText;
+	};
   };
