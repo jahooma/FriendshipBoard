@@ -3,15 +3,32 @@
 </head>
 
 <body>
- {{> entry}}
-
- {{> messages}}
+    <div style="float:right;color:white;padding:5px 5px 5px 5px">
+        9:00 AM
+    </div>
+    <div id="header-bar">
+        The Friendship Board
+    </div>
+    <div id="main-content">
+        <div id="chat_boards">
+        <div id="recent-chats">
+        Recent chats
+        </div>
+        <div id="long_chat-history">
+             {{> messages}}
+        </div>
+        </div>
+        <div id="icon-bar">
+            Here is the list of functionalities
+            <div id="icons-list">
+                <div style="width:50px;height:15px">
+                    <div class="icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-
-<template name="entry">
-	<p><input type="text" id="name" placeholder="Your Name"> <input type="text" id="messagesBox"
-	placeholder="Your Message"></p>
-</template>
 
 <template name = "messages">
 	{{#each messages}}
@@ -20,5 +37,12 @@
 </template>
 
 <template name="message">
-<p><strong>{{name}}:</strong> {{message}}</p>
+    <div class="message">
+        <div class="message-text">
+            {{message}}
+        </div>
+        <div class="message-time">
+            {{date}}
+        </div>
+    </div>
 </template>
