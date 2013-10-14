@@ -1,20 +1,33 @@
-#header-bar{
-    background-color:#000000;
+body {
     font-family:Verdana;
     color:white;
+}
+#header-bar {
+    background-color:#AD66A5;
     text-align:right;
     padding:5px 5px 5px 5px;
 }
-#main-content{
+#title {
+    position:relative;
+    right:20px;
+    font-style:italic;
+}
+#mode-type {
+    float:left;
+}
+#current-time {
+    float:right;
+}
+#main-content {
     background-color:#ff0000;
     width:100%;
 }
-#chat_boards{
+#chat_boards {
     background-color:#abcdef;
     width:100%;
     overflow:hidden;
 }
-#recent-chats{
+#recent-chats {
     background-color:#fff;
     border-radius:4px;
     width:50%;
@@ -23,7 +36,7 @@
     padding-bottom:1000px;
     margin-bottom:-1000px;
 }
-#long_chat-history{
+#long_chat-history {
     background-color:#fff;
     border-radius:4px;
     width:50%;
@@ -32,34 +45,72 @@
     padding-bottom:1000px;
     margin-bottom:-1000px;
 }
-.message{
+.message {
     border-radius:4px;
-    background-color:#fff;
-    border: 1px solid #ccc;
+    background-color:#F78181;
+    color: white;
+    border: 1px solid #ddd;
     padding:5px 5px 5px 5px;
 }
-.message-text{
+.message-text {
     font-family:Verdana;
-    color: black;
+    color: white;
 }
-.message-time{
+.message-time {
     font-family:Courier;
     text-align:right;
-    color: #aaa;
+    color:#f2f2f2;
 }
-#icon-bar{
-    background-color:#000000;
-    color:white;
-    clear:both;
+#in-progress {
+    font-size:250%;
 }
-#icons-list{
+#first-most-recent .message-text {
+    font-size:250%;
+}
+#second-most-recent .message-text {
+    font-size:200%;
+}
+#third-most-recent .message-text {
+    font-size:150%;
+}
+.user1 {
+    background-color:#F78181;
+}
+.user2 {
+    background-color:#819FF7;
+}
+.user3 {
+    background-color:#01DF74;
+}
+
+#icon-bar {
+    background-color:#AD66A5;
+}
+#other-modes-label {
+    padding: 5px 5px 5px 5px;
+    float:left;
+}
+#icon-list {
     padding:5px 5px 5px 5px;
+    text-align:center;
 }
-.icon{
-    padding:5px 5px 5px 5px;
+.icon-container {
     border:solid white;
-    background-image:url("storyboard_icon.png");
+    padding:5px 5px 5px 5px;
+    margin-left:15px;
+    width:40px;
+    height:22px;
+    display:inline-block;
+}
+.icon {
+    padding:5px 5px 5px 5px;
+    height: 100%;
     background-size:contain;
     background-repeat: no-repeat;
-    height: 100%;
+}
+.storyboard {
+    background-image:url("storyboard_icon.png");
+}
+.clear {
+    clear:both;
 }
