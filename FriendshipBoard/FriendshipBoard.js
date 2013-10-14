@@ -1,91 +1,92 @@
 Messages = new Meteor.Collection("messages");
 
 if (Meteor.isClient) {
-
 	Meteor.startup(function () {
-
-	var currMsgText = "";
-
-	var SpeechRecognition = function(config) {
-		var my = {};
-		var currId = 0;
-		var timeoutId;
-		newRecognition();
-		
-		function newRecognition() {
-			var recognition = new webkitSpeechRecognition();
-		    recognition.continuous = true;
-		    recognition.interimResults = true;
-		    recognition.lang = "en-US";
-			
-			my.recognition = recognition;
-			my.start = function() { my.recognition.start(); };
-			my.stop = function() { my.recognition.stop(); };
-			my.abort = function() { my.recognition.abort(); };
-			my.recognition.onerror = onError;
-			my.recognition.onresult = onResult;
-			my.recognition.onend = onEnd;
-		}
-		
-		function onError(event) {
-			console.log("error:", event.error);
+		var currMsgText = "";
+		var SpeechRecognition = function(config) {
+			var my = {};
+			var currId = 0;
+			var timeoutId;
 			newRecognition();
-		}
-		
-		function onEnd(event) {
-			console.log("end:", event);
-			my.start();
-		}
-		
-		function onResult(event) {
-			var interim_transcript = "";
-			for (var i = event.resultIndex; i < event.results.length; i++) {
-				if (event.results[i].isFinal) {
-					currMsgText += event.results[i][0].transcript;
-				} 
-				else {
-					interim_transcript += event.results[i][0].transcript;
-				}
+			
+			function newRecognition() {
+				var recognition = new webkitSpeechRecognition();
+				recognition.continuous = true;
+				recognition.interimResults = true;
+				recognition.lang = "en-US";
+				
+				my.recognition = recognition;
+				my.start = function() { my.recognition.start(); };
+				my.stop = function() { my.recognition.stop(); };
+				my.abort = function() { my.recognition.abort(); };
+				my.recognition.onerror = onError;
+				my.recognition.onresult = onResult;
+				my.recognition.onend = onEnd;
 			}
-			config.onMessageUpdate({ 
-				id: currId,
-				text: currMsgText + ", " + interim_transcript,
-				date: Date.now(),
-				isComplete: false
-			});
-			setUpdateTimeout();
+			
+			function onError(event) {
+				console.log("error:", event.error);
+				newRecognition();
+			}
+			
+			function onEnd(event) {
+				console.log("end:", event);
+				my.start();
+			}
+			
+			function onResult(event) {
+				var interim_transcript = "";
+				for (var i = event.resultIndex; i < event.results.length; i++) {
+					if (event.results[i].isFinal) {
+						currMsgText += event.results[i][0].transcript;
+					} 
+					else {
+						interim_transcript += event.results[i][0].transcript;
+					}
+				}
+				config.onMessageUpdate({ 
+					id: currId,
+					text: currMsgText + " " + interim_transcript,
+					date: Date.now(),
+					isComplete: false
+				});
+				setUpdateTimeout();
+			}
+			
+			function setUpdateTimeout() {
+				clearTimeout(timeoutId);
+				timeoutId = setTimeout(completeMessage, config.secondsSeparatingMessages * 1000);
+			}
+			
+			function completeMessage() {
+				if (currMsgText == "") return;
+				config.onMessageUpdate({
+					id: currId,
+					text: currMsgText,
+					date: Date.now(),
+					isComplete: true
+				});
+				currId++;
+				currMsgText = "";
+			}
+			
+			return my;
 		}
 		
-		function setUpdateTimeout() {
-			clearTimeout(timeoutId);
-			timeoutId = setTimeout(completeMessage, config.secondsSeparatingMessages * 1000);
-		}
-		
-		function completeMessage() {
-			if (currMsgText == "") return;
-			config.onMessageUpdate({
-				id: currId,
-				text: currMsgText,
-				date: Date.now(),
-				isComplete: true
-			});
-			currId++;
-			currMsgText = "";
-		}
-		
-		return my;
-	}		
 		var config = {
 			secondsSeparatingMessages: 2,
 			onMessageUpdate: function(message) {
 				console.log("update message ", message.id + ", is complete", message.isComplete, ":", message.text);
-				if (message.isComplete)
+				if (message.isComplete) {
 					Messages.insert({ name: 'James', message: message.text, time : message.date})
+					Session.set("currentText", "");
+				}
+				else
+					Session.set("currentText", message.text);
 			}
 		};
 
 		var speechRec = SpeechRecognition(config);
-		console.log("asdfasdf");
 		speechRec.start();
 	});
 
@@ -105,7 +106,7 @@ if (Meteor.isClient) {
 		return Messages.findOne({},{sort: {time: -1}, skip: 2});
 	};
 
-	Template.current.message = function () {
-		return currMsgText;
+	Template.current.message4 = function () {
+		return {message: Session.get("currentText")};
 	};
-  };
+}
