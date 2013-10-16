@@ -1,6 +1,7 @@
 body {
     font-family:Verdana;
     color:white;
+    overflow: hidden;
 }
 #header-bar {
     background-color:#AD66A5;
@@ -51,6 +52,9 @@ body {
     color: white;
     border: 1px solid #ddd;
     padding:5px 5px 5px 5px;
+    min-height: 50px;
+    height:auto !important;
+    height: 50px;
 }
 .message-text {
     font-family:Verdana;
@@ -63,15 +67,19 @@ body {
 }
 #in-progress {
     font-size:250%;
+    min-height: 150px
 }
 #first-most-recent .message-text {
     font-size:250%;
+    min-height: 150px;
 }
 #second-most-recent .message-text {
     font-size:200%;
+    min-height: 100px;
 }
 #third-most-recent .message-text {
     font-size:150%;
+    min-height: 60px;
 }
 .user1 {
     background-color:#F78181;

@@ -2,7 +2,24 @@ Messages = new Meteor.Collection("messages");
 
 if (Meteor.isClient) {
 	Meteor.startup(function () {
+
+		function getTime(x)
+		{
+			var date = new Date(x);
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			var ampm = "am";
+			if (hours > 12)
+			{
+				ampm = "pm";
+				hours = hours % 12;
+			}
+
+			return hours + ':' + minutes + " " + ampm;
+		}
+
 		var currMsgText = "";
+
 		var SpeechRecognition = function(config) {
 			var my = {};
 			var currId = 0;
@@ -48,6 +65,7 @@ if (Meteor.isClient) {
 					id: currId,
 					text: currMsgText + " " + interim_transcript,
 					date: Date.now(),
+					dateText: "",
 					isComplete: false
 				});
 				setUpdateTimeout();
@@ -64,8 +82,10 @@ if (Meteor.isClient) {
 					id: currId,
 					text: currMsgText,
 					date: Date.now(),
+					dateText: getTime(Date.now()),
 					isComplete: true
 				});
+				console.log(getTime(Date.now()));
 				currId++;
 				currMsgText = "";
 			}
@@ -78,7 +98,7 @@ if (Meteor.isClient) {
 			onMessageUpdate: function(message) {
 				console.log("update message ", message.id + ", is complete", message.isComplete, ":", message.text);
 				if (message.isComplete) {
-					Messages.insert({ name: 'James', message: message.text, time : message.date})
+					Messages.insert({ name: 'James', message: message.text, time : message.date, timeText : message.dateText})
 					Session.set("currentText", "");
 				}
 				else
@@ -91,7 +111,7 @@ if (Meteor.isClient) {
 	});
 
 	Template.messages.messages = function () {
-		return Messages.find({},{sort: {time: -1}, limit: 10});
+		return Messages.find({},{sort: {time: 1}, limit: 10});
 	};
 
 	Template.first.message1 = function () {
