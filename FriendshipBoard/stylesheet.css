@@ -4,7 +4,7 @@ body {
     overflow: hidden;
 }
 #header-bar {
-    background-color:#AD66A5;
+    background-color:#112277;
     text-align:right;
     padding:5px 5px 5px 5px;
 }
@@ -61,6 +61,7 @@ body {
     color: white;
 }
 .message-time {
+    font-size:80%;
     font-family:Courier;
     text-align:right;
     color:#f2f2f2;

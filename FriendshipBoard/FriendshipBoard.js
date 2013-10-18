@@ -8,6 +8,10 @@ if (Meteor.isClient) {
 			var date = new Date(x);
 			var hours = date.getHours();
 			var minutes = date.getMinutes();
+			if (minutes < 10)
+			{
+				minutes = "0" + minutes;
+			}
 			var ampm = "am";
 			if (hours > 12)
 			{
@@ -111,7 +115,7 @@ if (Meteor.isClient) {
 	});
 
 	Template.messages.messages = function () {
-		return Messages.find({},{sort: {time: 1}, limit: 10});
+		return Messages.find({},{sort: {time: -1}, limit: 10}).fetch().reverse();
 	};
 
 	Template.first.message1 = function () {
