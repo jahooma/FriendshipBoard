@@ -1,20 +1,23 @@
-/* Example usage:
-
-var config = {
-	secondsSeparatingMessages: 1,
-	onMessageUpdate: function(message) {
-		console.log("update message ", message.id + ", is complete", message.isComplete, ":", message.text);
-		if (message.isComplete)
-			document.writeln(message.text);
+function getTime(x)
+{
+	var date = new Date(x);
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+	if (minutes < 10)
+	{
+		minutes = "0" + minutes;
 	}
-};
+	var ampm = "am";
+	if (hours > 12)
+	{
+		ampm = "pm";
+		hours = hours % 12;
+	}
 
-var speechRec = SpeechRecognition(config);
-speechRec.start();
+	return hours + ':' + minutes + " " + ampm;
+}
 
-
-*/
-var SpeechRecognition = function(config) {
+SpeechRecognition = function(config) {
 	var my = {};
 	var currMsgText = "";
 	var currId = 0;
@@ -23,9 +26,9 @@ var SpeechRecognition = function(config) {
 	
 	function newRecognition() {
 		var recognition = new webkitSpeechRecognition();
-	    recognition.continuous = true;
-	    recognition.interimResults = true;
-	    recognition.lang = "en-US";
+		recognition.continuous = true;
+		recognition.interimResults = true;
+		recognition.lang = "en-US";
 		
 		my.recognition = recognition;
 		my.start = function() { my.recognition.start(); };
@@ -58,8 +61,9 @@ var SpeechRecognition = function(config) {
 		}
 		config.onMessageUpdate({ 
 			id: currId,
-			text: currMsgText + ", " + interim_transcript,
+			text: currMsgText + " " + interim_transcript,
 			date: Date.now(),
+			dateText: "",
 			isComplete: false
 		});
 		setUpdateTimeout();
@@ -76,8 +80,10 @@ var SpeechRecognition = function(config) {
 			id: currId,
 			text: currMsgText,
 			date: Date.now(),
+			dateText: getTime(Date.now()),
 			isComplete: true
 		});
+		console.log(getTime(Date.now()));
 		currId++;
 		currMsgText = "";
 	}

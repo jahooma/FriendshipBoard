@@ -1,0 +1,82 @@
+<template name = "chat-page">
+    <div id="main-content">
+        <div id="chat_boards">
+			<div id="long_chat-history">
+				{{> messages}}
+			</div>
+			<div id="recent-chats">
+				{{> third }}
+				{{> second }}
+				{{> first }}
+				{{> current }}
+            </div>
+			<div class="clear"></div>
+        </div>
+    </div>
+</template>
+
+<template name = "messages">
+	{{#each messages}}
+		{{> message }}
+	{{/each}}
+</template>
+
+<template name="message">
+    <div class="message">
+        <div class="message-text">
+            {{message}}
+        </div>
+        <div class="message-time">
+            {{timeText}}
+        </div>
+    </div>
+</template>
+
+<template name="first">
+  {{#with message1}}
+	<div id="first-most-recent" class="message">
+        <div class="message-text">
+            {{message}}
+        </div>
+        <div class="message-time">
+            {{timeText}}
+        </div>
+    </div>
+  {{/with}}
+</template>
+
+<template name="second">
+  {{#with message2}}
+	<div id="second-most-recent" class="message">
+        <div class="message-text">
+            {{message}}
+        </div>
+        <div class="message-time">
+            {{timeText}}
+        </div>
+    </div>
+  {{/with}}
+</template>
+
+<template name="third">
+  {{#with message3}}
+	<div id="third-most-recent" class="message">
+        <div class="message-text">
+            {{message}}
+        </div>
+        <div class="message-time">
+            {{timeText}}
+        </div>
+    </div>
+  {{/with}}
+</template>
+
+<template name="current">
+	{{#with message4}}
+	<div id="in-progress" class="message">
+		<div class="message-text">
+			{{message}}
+		</div>
+	</div>
+	{{/with}}
+</template>
