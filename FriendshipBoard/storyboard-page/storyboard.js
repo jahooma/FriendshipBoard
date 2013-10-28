@@ -26,7 +26,7 @@ StoryBoardPage = function() {
 			currStory.text += makeProperSentence(theText) + " ";
 			currStory.sentencesRemaining--;
 			console.log("updated curr story", currStory);
-			Stories.insert(currStory); //update this story in database, or insert it
+			Stories.update(currStory._id, currStory); //update this story in database, or insert it
 			
 			if (currStory.sentencesRemaining <= 0) {
 				Stories.insert(newStory());
@@ -51,7 +51,7 @@ StoryBoardPage = function() {
 }
 
 if (Meteor.isClient) {
-	Template.currentStory.story = function () {
+	Template.currentStory.story1 = function () {
 		var curr = Stories.findOne({},{sort: {timeCreated: -1}});
 		if (curr != undefined) curr.id = "current-story";
 		var inProgressSentence = {

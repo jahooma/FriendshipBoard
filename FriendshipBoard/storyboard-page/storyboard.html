@@ -32,16 +32,18 @@
 </template>
 
 <template name="currentStory">
-	{{#with story}}
-		{{> story}}
-	{{/with}}
-	{{#with inProgressSentence}}
-		<div id="in-progress">
-			{{text}}
-			<div id="sentence-counter">
-				({{sentencesRemaining}} sentences remaining)
+	{{#with story1}}
+		{{#with story}}
+			{{> story}}
+		{{/with}}
+		{{#with inProgressSentence}}
+			<div id="in-progress">
+				{{text}}
+				<div id="sentence-counter">
+					({{sentencesRemaining}} sentences remaining)
+				</div>
 			</div>
-		</div>
+		{{/with}}
 	{{/with}}
 </template>
 
