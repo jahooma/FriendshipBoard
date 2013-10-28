@@ -5,7 +5,8 @@ StoryBoardPage = function() {
 	
 	function newStory() {
 		var topic = topics[Math.floor(topics.length * Math.random())];
-		return {topic: topic, text: "", sentencesRemaining: maxSentences, timeCreated: Date.now()};
+		var now = Date.now();
+		return {topic: topic, text: "", sentencesRemaining: maxSentences, timeCreated: now, timeModified: timeToString(now) };
 	}
 	
 	function getCurrentStory() {
