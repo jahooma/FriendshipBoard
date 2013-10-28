@@ -40,7 +40,7 @@ StoryBoardPage = function() {
 	
 	my.startup = function() {
 		var config = {
-			secondsSeparatingMessages: 1,
+			secondsSeparatingMessages: 2,
 			onMessageUpdate: onMessageUpdate
 		};
 		var speechRec = SpeechRecognition(config);
