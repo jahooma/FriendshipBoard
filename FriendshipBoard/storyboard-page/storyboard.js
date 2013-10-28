@@ -16,17 +16,32 @@ StoryBoardPage = function() {
 	function makeProperSentence(text) {
 		return text.charAt(0).toUpperCase() + text.slice(1) + ".";
 	}
+	function timeToString(x) {
+		var date = new Date(x);
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		if (minutes < 10)
+		{
+			minutes = "0" + minutes;
+		}
+		var ampm = "am";
+		if (hours > 12)
+		{
+			ampm = "pm";
+			hours = hours % 12;
+		}
+
+		return hours + ':' + minutes + " " + ampm;
+	}
 	
 	function onMessageUpdate(message) {
-		console.log("update story message ", message.id + ", is complete", message.isComplete, ":", message.text);
 		if (message.isComplete) {
 			var currStory = getCurrentStory();
-			console.log("curr story", currStory);
 			var theText = message.text;
 			currStory.text += makeProperSentence(theText) + " ";
 			currStory.sentencesRemaining--;
-			console.log("updated curr story", currStory);
-			Stories.update(currStory._id, currStory); //update this story in database, or insert it
+			currStory.timeModified = timeToString(Date.now());
+			Stories.update(currStory._id, currStory);
 			
 			if (currStory.sentencesRemaining <= 0) {
 				Stories.insert(newStory());
