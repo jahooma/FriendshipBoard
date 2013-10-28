@@ -1,0 +1,52 @@
+<template name = "storyboard-page">
+    <div id="header-bar">
+        <div id="mode-type">Story Mode</div>
+        <div id="current-time">9:02 AM</div>
+        <div id="title">Friendship Board</div>
+    </div>
+    <div id="storyboard-content">
+        <div id="story_pages">
+			<div id="story-history">
+				{{> recentStories}}
+			</div>
+			<div id="current-story">
+				{{> currentStory}}
+			</div>
+        <div class="clear"></div>
+        </div>
+    </div>
+</template>
+
+<template name="story">
+	<div id="{{id}}" class="story{{extraClasses}}">
+		<div class="story-topic">
+			{{topic}}
+		</div>
+		<div class="story-text">
+			{{text}}
+		</div>
+		<div class="completion-time">
+			{{time}}
+		</div>
+	</div>
+</template>
+
+<template name="currentStory">
+	{{#with story}}
+		{{> story}}
+	{{/with}}
+	{{#with inProgressSentence}}
+		<div id="in-progress">
+			{{text}}
+			<div id="sentence-counter">
+				({{sentencesRemaining}} sentences remaining)
+			</div>
+		</div>
+	{{/with}}
+</template>
+
+<template name="recentStories">
+	{{#each stories}}
+		{{> story}}
+	{{/each}}
+</template>

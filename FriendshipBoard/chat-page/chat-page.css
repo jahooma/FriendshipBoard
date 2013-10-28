@@ -1,0 +1,73 @@
+#chat-content {
+    background-color:#ff0000;
+    width:100%;
+	color:white;
+}
+#chat_boards {
+    background-color:#abcdef;
+    width:100%;
+    overflow:hidden;
+}
+#recent-chats {
+    background-color:#fff;
+    border-radius:4px;
+    width:50%;
+    height:100%;
+    float:left;
+    padding-bottom:1000px;
+    margin-bottom:-1000px;
+}
+#long_chat-history {
+    background-color:#fff;
+    border-radius:4px;
+    width:50%;
+    height:100%;
+    float:left;
+    padding-bottom:1000px;
+    margin-bottom:-1000px;
+}
+.message {
+    border-radius:4px;
+    background-color:#F78181;
+    color: white;
+    border: 1px solid #ddd;
+    padding:5px 5px 5px 5px;
+    min-height: 50px;
+    height:auto !important;
+    height: 50px;
+}
+.message-text {
+    font-family:Verdana;
+    color: white;
+}
+.message-time {
+    font-size:80%;
+    font-family:Courier;
+    text-align:right;
+    color:#f2f2f2;
+}
+#in-progress {
+    font-size:250%;
+    min-height: 150px
+}
+#first-most-recent .message-text {
+    font-size:250%;
+    min-height: 150px;
+}
+#second-most-recent .message-text {
+    font-size:200%;
+    min-height: 100px;
+}
+#third-most-recent .message-text {
+    font-size:150%;
+    min-height: 60px;
+}
+.user1 {
+    background-color:#F78181;
+}
+.user2 {
+    background-color:#819FF7;
+}
+.user3 {
+    background-color:#01DF74;
+}

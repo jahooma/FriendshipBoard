@@ -20,7 +20,6 @@ function getTime(x)
 SpeechRecognition = function(config) {
 	var my = {};
 	var currMsgText = "";
-	var currId = 0;
 	var timeoutId;
 	newRecognition();
 	
@@ -59,8 +58,7 @@ SpeechRecognition = function(config) {
 				interim_transcript += event.results[i][0].transcript;
 			}
 		}
-		config.onMessageUpdate({ 
-			id: currId,
+		config.onMessageUpdate({
 			text: currMsgText + " " + interim_transcript,
 			date: Date.now(),
 			dateText: "",
@@ -77,14 +75,12 @@ SpeechRecognition = function(config) {
 	function completeMessage() {
 		if (currMsgText == "") return;
 		config.onMessageUpdate({
-			id: currId,
 			text: currMsgText,
 			date: Date.now(),
 			dateText: getTime(Date.now()),
 			isComplete: true
 		});
 		console.log(getTime(Date.now()));
-		currId++;
 		currMsgText = "";
 	}
 	
