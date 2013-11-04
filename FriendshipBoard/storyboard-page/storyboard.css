@@ -14,51 +14,54 @@
     width:100%;
     overflow:hidden;
 }
-#current-story {
-    border-radius:4px;
+#current-story-container{
     width:37%;
     height:100%;
     float:left;
-    margin-top:5%;
+    margin-top:7%;
     margin-left:5%;
     margin-right:8%;
     padding-bottom:1000px;
     margin-bottom:-1000px;
 }
 #story-history {
-    border-radius:4px;
     width:37%;
     height:100%;
     float:left;
-    margin-top:5%;
+    margin-top:7%;
     margin-left:8%;
     margin-right:5%;
     padding-bottom:1000px;
     margin-bottom:-1000px;
 }
 .story {
-    border-radius:4px;
     /*background-color:#F78181*/;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     margin:20px 20px 20px 20px;
 }
 .story-topic{
     font-size:250%;
     color:black;
 }
+.story-topic .recent{
+    font-size:150%;
+}
 .story-text {
     padding: 10px 10px 10px 10px;
     font-family:JandaSafeandSound;
     color: black;
+}
+.story-text .recent{
+    font-size:75%;
 }
 .completion-time {
     font-family:Courier;
     text-align:right;
     color:gray;
 }
-#in-progress {
+#story-in-progress {
     font-size:250%;
-    border-radius:4px;
+	min-height: 150px;
 }
 #sentence-counter{
     color:black;
@@ -66,10 +69,4 @@
     border-radius:4px;
     font-size:50%;
     text-align:right;
-}
-.story-topic .recent{
-    font-size:150%;
-}
-.story-text .recent{
-    font-size:75%;
 }

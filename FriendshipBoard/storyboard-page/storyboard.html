@@ -9,7 +9,7 @@
 			<div id="story-history">
 				{{> recentStories}}
 			</div>
-			<div id="current-story">
+			<div id="current-story-container">
 				{{> currentStory}}
 			</div>
         <div class="clear"></div>
@@ -37,7 +37,7 @@
 			{{> story}}
 		{{/with}}
 		{{#with inProgressSentence}}
-			<div id="in-progress">
+			<div id="story-in-progress">
 				{{text}}
 				<div id="sentence-counter">
 					({{sentencesRemaining}} sentences remaining)
