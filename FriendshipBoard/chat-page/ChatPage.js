@@ -1,5 +1,5 @@
 LocationId = new Meteor.Collection("locationId");
-var locationId = 0;
+var locationId = 4;
 
 ChatPage = function() {
 	var my = {};
