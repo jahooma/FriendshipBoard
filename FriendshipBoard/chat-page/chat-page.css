@@ -40,6 +40,18 @@
     font-family:Verdana;
     color: white;
 }
+.color0{
+    background-color: #F78181
+}
+.color1{
+    background-color: #CCAABB
+}
+.color2{
+    background-color: #9FEE99
+}
+.color3{
+    background-color: #AAAAFF;
+}
 .message-time {
     font-size:80%;
     font-family:Courier;
