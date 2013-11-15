@@ -47,14 +47,13 @@ ImagePage = function() {
 			y:y
 		};
 		Images.insert(imgData);
-		
-		console.log("result!", imgData);
+		console.log("image data:", imgData);
 	}
 	
 	function onMessageUpdate(message) {
 		if (message.isComplete) {
 			search(message.text);
-			console.log("spoken", message.text);
+			console.log("spoken:", message.text);
 			Session.set("currentText", "");
 		}
 		else
@@ -75,6 +74,7 @@ ImagePage = function() {
 
 if (Meteor.isClient) {
 	Template.imageHistory.images = function () {
-		return Images.find({},{sort: {time: -1}, limit: 40});
+		return Images.find({},{sort: {time: -1}, limit: 10}).fetch().reverse();
+		
 	};
 }
