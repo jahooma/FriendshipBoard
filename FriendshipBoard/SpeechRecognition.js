@@ -24,6 +24,7 @@ SpeechRecognition = function(config) {
 	newRecognition();
 	
 	function newRecognition() {
+		console.log("this is working");
 		var recognition = new webkitSpeechRecognition();
 		recognition.continuous = true;
 		recognition.interimResults = true;
