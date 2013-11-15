@@ -1,0 +1,13 @@
+<template name="image-page">
+	{{> imageHistory}}
+</template>
+
+<template name="imageHistory">
+	{{#each images}}
+		{{> image}}
+	{{/each}}
+</template>
+
+<template name="image">
+	<img class="searchImage" src="{{url}}" style="width:{{width}}px; height:{{height}}px; left:{{x}}px; top:{{y}}px;"></img>
+</template>
