@@ -4,7 +4,7 @@ Images = new  Meteor.Collection("images");
 LocationId = new Meteor.Collection("location");
 
 if (Meteor.isClient) {
-	var page = ImagePage(); //ChatPage();
+	var page = StoryBoardPage(); //ChatPage();
 	Meteor.startup(function () {
 		page.startup();		
 	});
