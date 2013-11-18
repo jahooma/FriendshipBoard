@@ -1,41 +1,42 @@
 <template name="sentiment-page">
     <div id="header-bar">
-        <div id="mode-type">Chat Mode</div>
+        <div id="mode-type">Sentiment Mode</div>
         <div id="current-time">9:02 AM</div>
         <div id="title">Friendship Board</div>
     </div>
     <div id="chat-content">
         <div id="chat_boards">
 			<div id="long_chat-history">
-				{{> messageHistory}}
+				{{> sentimentMessageHistory}}
 			</div>
 			<div id="recent-chats">
-				{{> recentMessages}}
+				{{> sentimentRecentMessages}}
             </div>
 			<div class="clear"></div>
         </div>
     </div>
 </template>
 
-<template name="message">
+<template name="setimentMessage">
     <div id="{{id}}" class="message">
         <div class="message-text">
             {{message}}
         </div>
+		<div> Sentiment score:{{sentimentScore}} </div>
         <div class="message-time">
             {{timeText}}
         </div>
     </div>
 </template>
 
-<template name="messageHistory">
+<template name="sentimentMessageHistory">
 	{{#each messages}}
-		{{> message}}
+		{{> setimentMessage}}
 	{{/each}}
 </template>
 
-<template name="recentMessages">
+<template name="sentimentRecentMessages">
 	{{#each messages}}
-		{{> message}}
+		{{> setimentMessage}}
 	{{/each}}
 </template>
