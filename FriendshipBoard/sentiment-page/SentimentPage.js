@@ -36,14 +36,21 @@ function changeLocation () {
 	started = true;
 }
 
-if (Meteor.isClient){
+if (Meteor.isClient) {
 	var started = false;
 	if (!started) {
 		setTimeout(changeLocation, 1000);
 	}
 	
+	function addIconAndDescription(message) {
+		message.iconDescription = "Friendly";
+		message.imgUrl = "/resources/icons/happy-cloud-icon.png";
+	}
+	
 	Template.sentimentMessageHistory.messages = function () {
-		return SentimentMessages.find({},{sort: {time: -1}, limit: 10}).fetch().reverse();
+		var msgs = SentimentMessages.find({},{sort: {time: -1}, limit: 10}).fetch().reverse();
+		msgs.forEach(addIconAndDescription);
+		return msgs;
 	};
 
 	Template.sentimentRecentMessages.messages = function () {
@@ -52,6 +59,7 @@ if (Meteor.isClient){
 		var ids = ["third-most-recent", "second-most-recent", "first-most-recent", "in-progress"];
 		for(var i = 0 ; i < recent.length; i++)
 			recent[i].id = ids[i];
+		recent.forEach(addIconAndDescription);
 		return recent;
 	};
 	
@@ -61,6 +69,6 @@ if (Meteor.isClient){
 		for(var i = 0; i < messages.length; i++) {
 			globalScore += messages[i].sentimentScore;
 		}
-		return [{ url: "http://sitmeanssit.com/dog-training-mu/houston-dog-training/files/2013/03/puppy.jpeg" }];
+		return [{ url: "http://sitmeanssit.com/dog-training-mu/houston-dog-training/files/2013/03/puppy.jpeg", info: "This is a happy puppy." }];
 	};
 }
