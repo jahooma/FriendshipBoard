@@ -54,4 +54,13 @@ if (Meteor.isClient){
 			recent[i].id = ids[i];
 		return recent;
 	};
+	
+	Template.puppy.puppyInfo = function () {
+		var messages = SentimentMessages.find({},{sort: {time: -1}, limit: 5});
+		var globalScore = 0;
+		for(var i = 0; i < messages.length; i++) {
+			globalScore += messages[i].sentimentScore;
+		}
+		return [{ url: "http://sitmeanssit.com/dog-training-mu/houston-dog-training/files/2013/03/puppy.jpeg" }];
+	};
 }

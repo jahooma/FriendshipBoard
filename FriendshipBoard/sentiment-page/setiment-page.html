@@ -7,10 +7,10 @@
     <div id="chat-content">
         <div id="chat_boards">
 			<div id="long_chat-history">
-				{{> sentimentMessageHistory}}
+				{{> sentimentRecentMessages}}
 			</div>
 			<div id="recent-chats">
-				{{> sentimentRecentMessages}}
+				{{> puppy}}
             </div>
 			<div class="clear"></div>
         </div>
@@ -38,5 +38,11 @@
 <template name="sentimentRecentMessages">
 	{{#each messages}}
 		{{> setimentMessage}}
+	{{/each}}
+</template>
+
+<template name="puppy">
+	{{#each puppyInfo}}
+		<img id="puppyImage" src="{{url}}"></img>
 	{{/each}}
 </template>

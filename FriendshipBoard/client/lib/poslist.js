@@ -1,6 +1,6 @@
-pos5 = ['breathtaking','hurrah','outstanding','superb','thrilled'];
+pos5 = ['breathtaking','hurrah','outstanding','superb','amazing','euphoric'];
 
-pos4 = ['amazing','awesome','brilliant','ecstatic','euphoric','exuberant','fabulous','fantastic',
+pos4 = ['thrilled','awesome','brilliant','ecstatic','exuberant','fabulous','fantastic',
 'fun','funnier','funny','godsend','heavenly','lifesaver','lmao','lmfao','masterpiece','masterpieces',
 'miracle','overjoyed','rapturous','rejoice','rejoiced','rejoices','rejoicing','rofl','roflcopter',
 'roflmao','rotfl','rotflmfao','rotflol','stunning','terrific','triumph','triumphant','win','winner',
