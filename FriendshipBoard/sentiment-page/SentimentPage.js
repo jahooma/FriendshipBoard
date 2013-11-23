@@ -4,13 +4,15 @@ SentimentPage = function() {
 	var config = {
 		secondsSeparatingMessages: 1,
 		onMessageUpdate: function(message) {
+			var score = analyze(message.text).score;
+			if (score >= 0) Session.set("lastMessageTime",message.date);
 			console.log("New sentiment message:", message.text);
 			if (message.isComplete) {
 				SentimentMessages.insert({
 					message: message.text,
 					time : message.date,
 					timeText : message.dateText,
-					sentimentScore : analyze(message.text).score
+					sentimentScore : score
 				});
 				Session.set("currentText", "Say something friendly!");
 			}
@@ -20,6 +22,8 @@ SentimentPage = function() {
 	};
 	
 	my.startup = function() {
+		Session.set("lastMessageTime",0);
+		Session.set("currentTime", Date.now())
 		var speechRec = SpeechRecognition(config);
 		speechRec.start();
 	};
@@ -36,7 +40,14 @@ function changeLocation () {
 	started = true;
 }
 
-if (Meteor.isClient) {
+if (Meteor.isClient){
+
+	Meteor.setInterval(function(){
+							Session.set("currentTime",Date.now());
+							var a = Session.get("currentTime");
+							}
+							,10000);
+
 	var started = false;
 	if (!started) {
 		setTimeout(changeLocation, 1000);
@@ -69,6 +80,10 @@ if (Meteor.isClient) {
 		return msgs;
 	};
 
+	Template.clock.time = function () {
+		return getTime(Session.get("currentTime"));
+	};
+
 	Template.sentimentRecentMessages.messages = function () {
 		var recent = SentimentMessages.find({},{sort: {time: -1}, limit: 3}).fetch().reverse();
 		recent.push({message: Session.get("currentText")});
@@ -81,11 +96,18 @@ if (Meteor.isClient) {
 	};
 	
 	Template.puppy.puppyInfo = function () {
-		var messages = SentimentMessages.find({},{sort: {time: -1}, limit: 5});
+		var messages = SentimentMessages.find({},{sort: {time: -1}, limit: 3}).fetch();
 		var globalScore = 0;
 		for(var i = 0; i < messages.length; i++) {
 			globalScore += messages[i].sentimentScore;
 		}
-		return [{ url: "http://sitmeanssit.com/dog-training-mu/houston-dog-training/files/2013/03/puppy.jpeg", info: "This is a happy puppy." }];
+
+		globalScore -= (Session.get("currentTime") - Session.get("lastMessageTime"))/5000;
+		console.log("globalScore: " + globalScore);
+		if (globalScore >= 20) return [{ url: "/resources/puppies/puppy4.jpg" }];
+		else if (globalScore >= 8) return [{ url: "/resources/puppies/puppy3.jpg" }];
+		else if (globalScore > 0) return [{ url: "/resources/puppies/puppy2.jpg" }];
+		else return [{ url: "/resources/puppies/puppy1.jpg" }];
+
 	};
 }

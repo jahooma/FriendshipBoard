@@ -9,4 +9,8 @@ if (Meteor.isClient) {
 	Meteor.startup(function () {
 		page.startup();		
 	});
+
+	setInterval(1000,function(){
+							Session.set("currentTime",Date.now())}
+							);
 }
