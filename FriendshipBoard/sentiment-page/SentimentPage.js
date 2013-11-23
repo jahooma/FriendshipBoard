@@ -43,8 +43,24 @@ if (Meteor.isClient) {
 	}
 	
 	function addIconAndDescription(message) {
-		message.iconDescription = "Friendly";
-		message.imgUrl = "/resources/icons/happy-cloud-icon.png";
+		var score = message.sentimentScore;
+		var thresholds = [-8, 0, 8];
+		if (score < thresholds[0]) {
+			message.iconDescription = "Very unfriendly :(";
+			message.imgUrl = "/resources/icons/devastated-cloud-icon.png";
+		}
+		else if (score < thresholds[1]) {
+			message.iconDescription = "Unfriendly";
+			message.imgUrl = "/resources/icons/sad-cloud-icon.png";
+		}
+		else if (score < thresholds[2]) {
+			message.iconDescription = "Friendly";
+			message.imgUrl = "/resources/icons/pleasant-cloud-icon.png";
+		}
+		else {
+			message.iconDescription = "Very friendly :)";
+			message.imgUrl = "/resources/icons/happy-cloud-icon.png";
+		}
 	}
 	
 	Template.sentimentMessageHistory.messages = function () {
