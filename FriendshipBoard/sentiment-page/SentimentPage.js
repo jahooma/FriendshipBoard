@@ -12,7 +12,7 @@ SentimentPage = function() {
 					timeText : message.dateText,
 					sentimentScore : analyze(message.text).score
 				});
-				Session.set("currentText", "");
+				Session.set("currentText", "Say something friendly!");
 			}
 			else
 				Session.set("currentText", message.text);
