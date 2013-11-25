@@ -1,3 +1,19 @@
 #puppyImage {
 	width: 100%;
 }
+
+.icon-container {
+	float:left;
+	right: 5px;
+	margin-right: 15px;
+	width:20%;
+}
+.message-text {
+	display:inline-block;
+}
+.message-time {
+	clear:both;
+}
+.message-icon {
+	width:100%;
+}
