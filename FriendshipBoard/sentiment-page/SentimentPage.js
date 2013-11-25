@@ -75,7 +75,8 @@ if (Meteor.isClient) {
 		var ids = ["third-most-recent", "second-most-recent", "first-most-recent", "in-progress"];
 		for(var i = 0 ; i < recent.length; i++)
 			recent[i].id = ids[i];
-		recent.forEach(addIconAndDescription);
+		for(var j = 0; j < recent.length - 1; j++)
+			addIconAndDescription(recent[j]);
 		return recent;
 	};
 	
