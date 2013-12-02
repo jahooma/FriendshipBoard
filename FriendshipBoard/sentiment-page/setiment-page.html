@@ -1,7 +1,7 @@
 <template name="sentiment-page">
     <div id="header-bar">
         <div id="mode-type">Sentiment Mode</div>
-        <div id="current-time">9:02 AM</div>
+		{{> clock}}
         <div id="title">Friendship Board</div>
     </div>
     <div id="chat-content">
@@ -54,6 +54,6 @@
 </template>
 
 <template name="clock">
-    {{time}}
+		<div id="current-time">{{time}}</div>
 </template>
 

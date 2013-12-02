@@ -115,3 +115,21 @@ if (Meteor.isClient){
 
 	};
 }
+function getTime(x)
+{
+	var date = new Date(x);
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+	if (minutes < 10)
+	{
+		minutes = "0" + minutes;
+	}
+	var ampm = "am";
+	if (hours > 12)
+	{
+		ampm = "pm";
+		hours = hours % 12;
+	}
+
+	return hours + ':' + minutes + " " + ampm;
+}
