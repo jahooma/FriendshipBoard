@@ -55,7 +55,7 @@ if (Meteor.isClient){
 	
 	function addIconAndDescription(message) {
 		var score = message.sentimentScore;
-		var thresholds = [-8, 0, 8];
+		var thresholds = [-4, -2, 2, 4];
 		if (score < thresholds[0]) {
 			message.iconDescription = "Very unfriendly :(";
 			message.imgUrl = "/resources/icons/devastated-cloud-icon.png";
@@ -65,6 +65,10 @@ if (Meteor.isClient){
 			message.imgUrl = "/resources/icons/sad-cloud-icon.png";
 		}
 		else if (score < thresholds[2]) {
+			message.iconDescription = "Neutral";
+			message.imgUrl = "/resources/icons/pleasant-cloud-icon.png";
+		}
+		else if (score < thresholds[3]) {
 			message.iconDescription = "Friendly";
 			message.imgUrl = "/resources/icons/pleasant-cloud-icon.png";
 		}

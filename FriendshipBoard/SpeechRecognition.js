@@ -59,6 +59,8 @@ SpeechRecognition = function(config) {
 				interim_transcript += event.results[i][0].transcript;
 			}
 		}
+		interim_transcript = interim_transcript.replace("porn", "corn");
+		currMsgText = currMsgText.replace("porn", "corn");
 		config.onMessageUpdate({
 			text: currMsgText + " " + interim_transcript,
 			date: Date.now(),

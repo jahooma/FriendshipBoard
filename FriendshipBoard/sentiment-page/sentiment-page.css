@@ -1,13 +1,12 @@
 #puppyImage {
 	width: 100%;
 }
-<<<<<<< HEAD
-
 .icon-container {
 	float:left;
 	right: 5px;
 	margin-right: 15px;
 	width:20%;
+	text-align:center;
 }
 .message-text {
 }
@@ -16,6 +15,4 @@
 }
 .message-icon {
 	width:100%;
-body {
-    overflow:hidden;
 }
