@@ -104,9 +104,9 @@ if (Meteor.isClient){
 		var decSeconds = 60;
 		globalScore -= (Session.get("currentTime") - Session.get("lastMessageTime"))/(1000*decSeconds);
 		console.log("globalScore: " + globalScore);
-		if (globalScore >= 15) return [{ url: "/resources/puppies/puppy4.jpg" }];
-		else if (globalScore >= 6) return [{ url: "/resources/puppies/puppy3.jpg" }];
-		else if (globalScore > 0) return [{ url: "/resources/puppies/puppy2.jpg" }];
+		if (globalScore >= 8) return [{ url: "/resources/puppies/puppy4.jpg" }];
+		else if (globalScore >= 5) return [{ url: "/resources/puppies/puppy3.jpg" }];
+		else if (globalScore > -1) return [{ url: "/resources/puppies/puppy2.jpg" }];
 		else return [{ url: "/resources/puppies/puppy1.jpg" }];
 
 	};
