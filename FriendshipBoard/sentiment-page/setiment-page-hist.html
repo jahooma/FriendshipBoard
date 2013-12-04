@@ -1,0 +1,59 @@
+<template name="sentiment-page-history">
+    <div id="header-bar">
+        <div id="mode-type">Sentiment Mode</div>
+		{{> clock}}
+        <div id="title">Friendship Board</div>
+    </div>
+    <div id="chat-content">
+        <div id="chat_boards">
+			<div id="long_chat-history">
+				{{> sentimentRecentMessagesHist}}
+			</div>
+			<div id="recent-chats">
+				{{> puppyHist}}
+            </div>
+			<div class="clear"></div>
+        </div>
+    </div>
+</template>
+
+<template name="setimentMessageHist">
+    <div id="{{id}}" class="message">
+		<div class="icon-container">
+			<img class="message-icon" src="{{imgUrl}}"></img>
+			<div class="icon-description">{{iconDescription}}</div>
+		</div>
+        <div class="message-text">
+            {{message}}
+        </div>
+        <div class="message-time">
+            {{timeText}}
+        </div>
+    </div> 
+</template>
+
+<template name="sentimentMessageHistoryHist">
+	{{#each messages}}
+		{{> setimentMessageHist}}
+	{{/each}}
+</template>
+
+<template name="sentimentRecentMessagesHist">
+	{{#each messages}}
+		{{> setimentMessageHist}}
+	{{/each}}
+</template>
+
+<template name="puppyHist">
+	{{#each puppyInfo}}
+		<div>
+			<img id="puppyImage" src="{{url}}"></img>
+			<div id="puppyInfo">{{info}}</div>
+		</div>
+	{{/each}}
+</template>
+
+<template name="clockHist">
+		<div id="current-time">{{time}}</div>
+</template>
+

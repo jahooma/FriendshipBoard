@@ -78,18 +78,18 @@ if (Meteor.isClient){
 		}
 	}
 	
-	Template.sentimentMessageHistory.messages = function () {
+	Template.sentimentMessageHistoryHist.messages = function () {
 		var msgs = SentimentMessages.find({},{sort: {time: -1}, limit: 10}).fetch().reverse();
 		msgs.forEach(addIconAndDescription);
 		return msgs;
 	};
 
-	Template.clock.time = function () {
+	Template.clockHist.time = function () {
 		return getTime(Session.get("currentTime"));
 	};
 
-	Template.sentimentRecentMessages.messages = function () {
-		var recent = SentimentMessages.find({},{sort: {time: -1}, limit: 3}).fetch().reverse();
+	Template.sentimentRecentMessagesHist.messages = function () {
+		var recent = SentimentMessages.find({},{sort: {time: -1}, limit: 100}).fetch().reverse();
 		recent.push({message: Session.get("currentText")});
 		var ids = ["third-most-recent", "second-most-recent", "first-most-recent", "in-progress"];
 		for(var i = 0 ; i < recent.length; i++)
@@ -99,7 +99,7 @@ if (Meteor.isClient){
 		return recent;
 	};
 	
-	Template.puppy.puppyInfo = function () {
+	Template.puppyHist.puppyInfo = function () {
 		var messages = SentimentMessages.find({},{sort: {time: -1}, limit: 3}).fetch();
 		var globalScore = 0;
 		for(var i = 0; i < messages.length; i++) {

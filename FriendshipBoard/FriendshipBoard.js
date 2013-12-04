@@ -5,7 +5,7 @@ Images = new  Meteor.Collection("images");
 LocationId = new Meteor.Collection("location");
 
 if (Meteor.isClient) {
-	var page = SentimentPage(); //ChatPage();
+	var page = SentimentPageHistory(); //ChatPage();
 	Meteor.startup(function () {
 		page.startup();		
 	});
